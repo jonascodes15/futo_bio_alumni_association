@@ -37,23 +37,23 @@ export function MobileMenu({ links }: { links: { href: string; label: string }[]
         aria-label={open ? "Close menu" : "Open menu"}
         aria-expanded={open}
         aria-controls="mobile-menu"
-        className="relative z-50 -mr-2 flex h-11 w-11 items-center justify-center rounded-lg text-white transition-colors duration-500 ease-premium hover:bg-white/10 md:hidden"
+        className="relative z-50 -mr-2 flex h-11 w-11 animate-fade-down items-center justify-center rounded-lg text-white transition-colors duration-500 ease-premium hover:bg-white/10 md:hidden"
       >
         {/* Three bars that fold into an X. */}
         <span aria-hidden className="relative block h-4 w-6">
           <span
             className={`absolute left-0 top-0 h-0.5 w-6 rounded-full bg-current transition-transform duration-500 ease-premium ${
-              open ? "translate-y-[7px] rotate-45" : ""
+              open ? "translate-y-1.75 rotate-45" : ""
             }`}
           />
           <span
-            className={`absolute left-0 top-[7px] h-0.5 rounded-full bg-current transition-[opacity,width] duration-300 ease-premium ${
+            className={`absolute left-0 top-1.75 h-0.5 rounded-full bg-current transition-[opacity,width] duration-300 ease-premium ${
               open ? "w-0 opacity-0" : "w-4 opacity-100"
             }`}
           />
           <span
-            className={`absolute left-0 top-[14px] h-0.5 w-6 rounded-full bg-current transition-transform duration-500 ease-premium ${
-              open ? "-translate-y-[7px] -rotate-45" : ""
+            className={`absolute left-0 top-3.5 h-0.5 w-6 rounded-full bg-current transition-transform duration-500 ease-premium ${
+              open ? "-translate-y-1.75 -rotate-45" : ""
             }`}
           />
         </span>

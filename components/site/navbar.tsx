@@ -11,9 +11,11 @@ const links = [
 
 export function Navbar() {
   return (
-    <header className="absolute inset-x-0 top-0 z-30 animate-fade-down">
+    // The entrance animation is on the children, not the header: an animated
+    // transform on an ancestor would trap the mobile menu's fixed overlay inside it.
+    <header className="absolute inset-x-0 top-0 z-30">
       <div className="mx-auto flex max-w-6xl items-center justify-between px-5 py-4">
-        <Link href="/" className="group relative z-50 flex items-center gap-3 text-white">
+        <Link href="/" className="group relative z-50 flex animate-fade-down items-center gap-3 text-white">
           <Image
             src="/logo.png"
             alt="FUTO crest"
@@ -28,7 +30,7 @@ export function Navbar() {
             <span className="text-gold-500">Alumni Association</span>
           </span>
         </Link>
-        <nav className="hidden items-center gap-7 text-sm font-medium text-white/85 md:flex">
+        <nav className="hidden animate-fade-down items-center gap-7 text-sm font-medium text-white/85 md:flex">
           {links.map((l) => (
             <a
               key={l.href}
