@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { MobileMenu } from "@/components/site/mobile-menu";
 
 const links = [
   { href: "#census", label: "Census" },
@@ -12,7 +13,7 @@ export function Navbar() {
   return (
     <header className="absolute inset-x-0 top-0 z-30 animate-fade-down">
       <div className="mx-auto flex max-w-6xl items-center justify-between px-5 py-4">
-        <Link href="/" className="group flex items-center gap-3 text-white">
+        <Link href="/" className="group relative z-50 flex items-center gap-3 text-white">
           <Image
             src="/logo.png"
             alt="FUTO crest"
@@ -21,7 +22,7 @@ export function Navbar() {
             className="h-11 w-11 object-contain transition-transform duration-700 ease-premium group-hover:rotate-[-6deg] group-hover:scale-105"
             priority
           />
-          <span className="hidden text-sm font-semibold leading-tight sm:block">
+          <span className="text-[13px] font-semibold leading-tight sm:text-sm">
             FUTO Biology
             <br />
             <span className="text-gold-500">Alumni Association</span>
@@ -38,6 +39,7 @@ export function Navbar() {
             </a>
           ))}
         </nav>
+        <MobileMenu links={links} />
       </div>
     </header>
   );
