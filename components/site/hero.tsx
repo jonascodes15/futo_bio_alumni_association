@@ -21,8 +21,16 @@ export function Hero() {
   return (
     <section className="dna-bg relative overflow-hidden pb-28 pt-36 text-white">
       <div aria-hidden className="pointer-events-none absolute inset-0">
-        <div className="absolute -left-[10%] -top-[20%] h-[60vmax] w-[60vmax] animate-drift rounded-full bg-forest-500/20 blur-3xl" />
-        <div className="absolute -bottom-[30%] -right-[15%] h-[55vmax] w-[55vmax] animate-drift-slow rounded-full bg-gold-500/10 blur-3xl" />
+        {/* Soft glows drawn as radial gradients rather than blurred shapes: same look,
+            but far cheaper for phones to animate. */}
+        <div
+          className="absolute -left-[20%] -top-[30%] h-[80vmax] w-[80vmax] animate-drift"
+          style={{ background: "radial-gradient(circle, rgb(20 160 88 / 0.2), transparent 62%)" }}
+        />
+        <div
+          className="absolute -bottom-[40%] -right-[25%] h-[75vmax] w-[75vmax] animate-drift-slow"
+          style={{ background: "radial-gradient(circle, rgb(245 197 24 / 0.1), transparent 62%)" }}
+        />
         <div
           className="absolute inset-0 animate-fade-in opacity-[0.07] [animation-duration:2s]"
           style={{
