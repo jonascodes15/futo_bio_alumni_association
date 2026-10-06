@@ -1,7 +1,9 @@
 "use client";
 
 import { useState } from "react";
+import { AnimatePresence, motion } from "motion/react";
 import { Loader2, MessageCircle, CheckCircle2 } from "lucide-react";
+import { EASE_PREMIUM } from "@/components/motion/reveal";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogDescription, DialogTitle } from "@/components/ui/dialog";
 import { INDUSTRIES, gradYears } from "@/lib/utils";
@@ -94,7 +96,7 @@ export function CensusForm() {
         <Field label="Company / Institution">
           <input name="company" className="field" placeholder="e.g. NAFDAC" />
         </Field>
-        <label className="flex cursor-pointer items-start gap-3 rounded-lg border border-forest-100 bg-forest-50 p-4 sm:col-span-2">
+        <label className="flex cursor-pointer items-start gap-3 rounded-lg border border-forest-100 bg-forest-50 p-4 transition-colors duration-500 ease-premium hover:border-forest-600/30 hover:bg-forest-100/60 has-checked:border-forest-600/40 has-checked:bg-forest-100 sm:col-span-2">
           <input type="checkbox" name="interestedInMentorship" className="mt-1 h-4 w-4 accent-forest-700" />
           <span className="text-sm">
             <span className="font-semibold text-forest-900">I&apos;m interested in mentoring final-year students</span>
@@ -103,11 +105,20 @@ export function CensusForm() {
           </span>
         </label>
 
-        {error && (
-          <p role="alert" className="rounded-lg bg-red-50 px-4 py-3 text-sm font-medium text-red-700 sm:col-span-2">
-            {error}
-          </p>
-        )}
+        <AnimatePresence initial={false}>
+          {error && (
+            <motion.p
+              role="alert"
+              initial={{ opacity: 0, y: -6 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.4, ease: EASE_PREMIUM }}
+              className="rounded-lg bg-red-50 px-4 py-3 text-sm font-medium text-red-700 sm:col-span-2"
+            >
+              {error}
+            </motion.p>
+          )}
+        </AnimatePresence>
 
         <Button type="submit" size="lg" disabled={loading} className="sm:col-span-2">
           {loading && <Loader2 className="h-4 w-4 animate-spin" />}
@@ -117,7 +128,13 @@ export function CensusForm() {
 
       <Dialog open={open} onOpenChange={setOpen}>
         <DialogContent>
-          <CheckCircle2 className="mx-auto h-14 w-14 text-forest-600" />
+          <motion.div
+            initial={{ scale: 0, rotate: -30 }}
+            animate={{ scale: 1, rotate: 0 }}
+            transition={{ type: "spring", stiffness: 260, damping: 18, delay: 0.2 }}
+          >
+            <CheckCircle2 className="mx-auto h-14 w-14 text-forest-600" />
+          </motion.div>
           <DialogTitle className="mt-4 font-display text-2xl font-bold text-forest-900">
             You&apos;re in! Welcome, Bioscientist.
           </DialogTitle>

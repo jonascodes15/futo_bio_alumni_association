@@ -27,8 +27,12 @@ export default async function Dashboard() {
     <div className="space-y-8">
       <h1 className="font-display text-3xl font-bold text-forest-900">Overview</h1>
       <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
-        {cards.map(({ label, value, icon: Icon }) => (
-          <div key={label} className="rounded-xl bg-white p-5 shadow-sm ring-1 ring-forest-700/10">
+        {cards.map(({ label, value, icon: Icon }, i) => (
+          <div
+            key={label}
+            className="animate-rise rounded-xl bg-white p-5 shadow-sm ring-1 ring-forest-700/10 transition-[transform,box-shadow] duration-500 ease-premium hover:-translate-y-0.5 hover:shadow-md"
+            style={{ animationDelay: `${i * 70}ms` }}
+          >
             <div className="flex items-center justify-between text-forest-700">
               <span className="text-xs font-semibold uppercase tracking-wide">{label}</span>
               <Icon className="h-5 w-5" />
@@ -52,7 +56,11 @@ export default async function Dashboard() {
                     <span className="font-semibold">{i._count._all}</span>
                   </div>
                   <div className="mt-1 h-2 rounded-full bg-forest-100">
-                    <div className="h-2 rounded-full bg-forest-600" style={{ width: `${(i._count._all / max) * 100}%` }} />
+                    {/* Bars grow from the left on load. */}
+                    <div
+                      className="h-2 origin-left animate-[grow-x_1.1s_var(--ease-premium)_both] rounded-full bg-forest-600"
+                      style={{ width: `${(i._count._all / max) * 100}%` }}
+                    />
                   </div>
                 </li>
               ))}

@@ -3,6 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
+import { motion } from "motion/react";
 import { LayoutDashboard, Users, Inbox, Mail, LogOut } from "lucide-react";
 import { cn } from "@/lib/utils";
 
@@ -40,13 +41,23 @@ export function AdminSidebar({ unread, email }: { unread: number; email: string 
               key={href}
               href={href}
               className={cn(
-                "flex items-center gap-3 whitespace-nowrap rounded-lg px-3 py-2.5 text-sm font-medium transition",
-                active ? "bg-gold-500 text-forest-950" : "text-white/75 hover:bg-white/10",
+                "relative flex items-center gap-3 whitespace-nowrap rounded-lg px-3 py-2.5 text-sm font-medium transition-colors duration-500 ease-premium",
+                active ? "text-forest-950" : "text-white/75 hover:bg-white/10 hover:text-white",
               )}
             >
-              <Icon className="h-4 w-4" /> {label}
+              {/* Shared highlight that slides to the active page. */}
+              {active && (
+                <motion.span
+                  layoutId="admin-nav-pill"
+                  className="absolute inset-0 rounded-lg bg-gold-500"
+                  transition={{ type: "spring", stiffness: 380, damping: 34 }}
+                />
+              )}
+              <Icon className="relative h-4 w-4" /> <span className="relative">{label}</span>
               {href === "/admin/messages" && unread > 0 && (
-                <span className="ml-auto rounded-full bg-red-500 px-2 py-0.5 text-xs font-bold text-white">{unread}</span>
+                <span className="relative ml-auto rounded-full bg-red-500 px-2 py-0.5 text-xs font-bold text-white">
+                  {unread}
+                </span>
               )}
             </Link>
           );
@@ -54,7 +65,10 @@ export function AdminSidebar({ unread, email }: { unread: number; email: string 
       </nav>
       <div className="hidden border-t border-white/10 p-4 md:block">
         <p className="truncate text-xs text-white/50">{email}</p>
-        <button onClick={logout} className="mt-2 flex items-center gap-2 text-sm text-white/80 hover:text-gold-400">
+        <button
+          onClick={logout}
+          className="mt-2 flex items-center gap-2 text-sm text-white/80 transition-colors duration-500 ease-premium hover:text-gold-400"
+        >
           <LogOut className="h-4 w-4" /> Sign out
         </button>
       </div>

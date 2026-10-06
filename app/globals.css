@@ -16,10 +16,97 @@
   --color-slate-ink: #0f1a14;
   --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
   --font-display: var(--font-display), ui-serif, Georgia, serif;
+
+  /* Motion: one easing curve everywhere so the site moves with a single voice. */
+  --ease-premium: cubic-bezier(0.22, 1, 0.36, 1);
+  --animate-rise: rise 1s var(--ease-premium) both;
+  --animate-fade-down: fade-down 0.9s var(--ease-premium) both;
+  --animate-fade-in: fade-in 0.3s var(--ease-premium) both;
+  --animate-fade-out: fade-out 0.2s ease-in both;
+  --animate-dialog-in: dialog-in 0.5s var(--ease-premium) both;
+  --animate-dialog-out: dialog-out 0.2s ease-in both;
+  --animate-drift: drift 22s ease-in-out infinite alternate;
+  --animate-drift-slow: drift 30s ease-in-out infinite alternate-reverse;
+
+  @keyframes rise {
+    from {
+      opacity: 0;
+      transform: translateY(22px) scale(0.985);
+      filter: blur(6px);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+      filter: blur(0);
+    }
+  }
+  @keyframes fade-down {
+    from {
+      opacity: 0;
+      transform: translateY(-12px);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+  @keyframes fade-in {
+    from {
+      opacity: 0;
+    }
+  }
+  @keyframes fade-out {
+    to {
+      opacity: 0;
+    }
+  }
+  @keyframes dialog-in {
+    from {
+      opacity: 0;
+      transform: translateY(12px) scale(0.96);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+  @keyframes dialog-out {
+    to {
+      opacity: 0;
+      transform: translateY(6px) scale(0.98);
+    }
+  }
+  @keyframes grow-x {
+    from {
+      transform: scaleX(0);
+    }
+  }
+  @keyframes drift {
+    from {
+      transform: translate3d(0, 0, 0) scale(1);
+    }
+    to {
+      transform: translate3d(6%, 8%, 0) scale(1.15);
+    }
+  }
 }
 
 html {
   scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    animation-delay: 0ms !important;
+    transition-duration: 0.01ms !important;
+  }
 }
 
 body {
@@ -37,7 +124,12 @@ body {
   font-size: 0.9rem;
   color: var(--color-slate-ink);
   outline: none;
-  transition: border-color 0.15s, box-shadow 0.15s;
+  transition:
+    border-color 0.3s var(--ease-premium),
+    box-shadow 0.3s var(--ease-premium);
+}
+.field:hover:not(:focus) {
+  border-color: #b3c8ba;
 }
 .field:focus {
   border-color: var(--color-forest-600);

@@ -40,12 +40,12 @@ export default function AdminLogin() {
 
   return (
     <main className="dna-bg flex min-h-screen items-center justify-center px-5 py-10">
-      <div className="w-full max-w-sm">
+      <div className="w-full max-w-sm animate-rise">
         <Link
           href="/"
-          className="mb-4 inline-flex items-center gap-1.5 rounded-lg px-2 py-1.5 text-sm font-medium text-white/80 transition-colors hover:bg-white/10 hover:text-white focus-visible:bg-white/10 focus-visible:text-white focus-visible:outline-none"
+          className="group mb-4 inline-flex items-center gap-1.5 rounded-lg px-2 py-1.5 text-sm font-medium text-white/80 transition-colors duration-500 ease-premium hover:bg-white/10 hover:text-white focus-visible:bg-white/10 focus-visible:text-white focus-visible:outline-none"
         >
-          <ArrowLeft className="h-4 w-4" /> Back to home
+          <ArrowLeft className="h-4 w-4 transition-transform duration-500 ease-premium group-hover:-translate-x-0.5" /> Back to home
         </Link>
         <form onSubmit={onSubmit} className="w-full space-y-5 rounded-2xl bg-white p-8 shadow-2xl">
           <div className="text-center">

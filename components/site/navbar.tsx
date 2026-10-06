@@ -10,10 +10,17 @@ const links = [
 
 export function Navbar() {
   return (
-    <header className="absolute inset-x-0 top-0 z-30">
+    <header className="absolute inset-x-0 top-0 z-30 animate-fade-down">
       <div className="mx-auto flex max-w-6xl items-center justify-between px-5 py-4">
-        <Link href="/" className="flex items-center gap-3 text-white">
-          <Image src="/logo.png" alt="FUTO crest" width={44} height={44} className="h-11 w-11 object-contain" priority />
+        <Link href="/" className="group flex items-center gap-3 text-white">
+          <Image
+            src="/logo.png"
+            alt="FUTO crest"
+            width={44}
+            height={44}
+            className="h-11 w-11 object-contain transition-transform duration-700 ease-premium group-hover:rotate-[-6deg] group-hover:scale-105"
+            priority
+          />
           <span className="hidden text-sm font-semibold leading-tight sm:block">
             FUTO Biology
             <br />
@@ -22,7 +29,11 @@ export function Navbar() {
         </Link>
         <nav className="hidden items-center gap-7 text-sm font-medium text-white/85 md:flex">
           {links.map((l) => (
-            <a key={l.href} href={l.href} className="transition hover:text-gold-400">
+            <a
+              key={l.href}
+              href={l.href}
+              className="relative py-1 transition-colors duration-500 ease-premium after:absolute after:inset-x-0 after:-bottom-0.5 after:h-px after:origin-right after:scale-x-0 after:bg-gold-400 after:transition-transform after:duration-500 after:ease-premium hover:text-gold-400 hover:after:origin-left hover:after:scale-x-100"
+            >
               {l.label}
             </a>
           ))}
