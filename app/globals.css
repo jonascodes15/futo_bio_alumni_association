@@ -1,0 +1,63 @@
+@import "tailwindcss";
+
+/* Palette taken from the FUTO crest (green + gold) with dark-slate depth. */
+@theme {
+  --color-forest-950: #06150d;
+  --color-forest-900: #0a2417;
+  --color-forest-800: #0d3a22;
+  --color-forest-700: #0b5d33;
+  --color-forest-600: #0f7a42;
+  --color-forest-500: #14a058;
+  --color-forest-100: #dcf3e5;
+  --color-forest-50: #f0faf4;
+  --color-gold-500: #f5c518;
+  --color-gold-400: #fbd84a;
+  --color-gold-600: #d9a90a;
+  --color-slate-ink: #0f1a14;
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-display), ui-serif, Georgia, serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: #f6faf7;
+  color: var(--color-slate-ink);
+  font-family: var(--font-sans);
+}
+
+.field {
+  width: 100%;
+  border-radius: 0.5rem;
+  border: 1px solid #cfdcd3;
+  background: #fff;
+  padding: 0.6rem 0.8rem;
+  font-size: 0.9rem;
+  color: var(--color-slate-ink);
+  outline: none;
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+.field:focus {
+  border-color: var(--color-forest-600);
+  box-shadow: 0 0 0 3px rgb(20 160 88 / 0.2);
+}
+.field::placeholder {
+  color: #8a9a90;
+}
+
+.label {
+  display: block;
+  margin-bottom: 0.35rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #2c4033;
+}
+
+.dna-bg {
+  background-image:
+    radial-gradient(circle at 20% 20%, rgb(20 160 88 / 0.25), transparent 45%),
+    radial-gradient(circle at 85% 70%, rgb(245 197 24 / 0.14), transparent 40%),
+    linear-gradient(135deg, #06150d 0%, #0a2417 55%, #0d3a22 100%);
+}
