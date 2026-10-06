@@ -10,7 +10,6 @@ export const metadata: Metadata = {
   title: "FUTO Biology Alumni Association",
   description:
     "Official portal of the Department of Biology Alumni Association, Federal University of Technology, Owerri. Join the Global Alumni Census.",
-  icons: { icon: "/logo.png" },
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
