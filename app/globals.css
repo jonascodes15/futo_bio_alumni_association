@@ -46,6 +46,10 @@ body {
 .field::placeholder {
   color: #8a9a90;
 }
+/* Hide Edge's built-in password reveal so it doesn't clash with our toggle. */
+.field::-ms-reveal {
+  display: none;
+}
 
 .label {
   display: block;
